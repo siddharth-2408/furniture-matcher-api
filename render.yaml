@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: furniture-matcher-api
-    env: python
+    name: ikea-matcher-api
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: python api_service.py
     envVars:
