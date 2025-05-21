@@ -294,7 +294,7 @@ def main(config):
     logger.info(f"✅ Done in {time.time() - start_time:.2f}s")
 
 # === CLI Entry Point ===
-if __name__ == "__main__":
+if __name__ == "__main__" and os.environ.get("FLASK_RUN_FROM_CLI") != "true":
     import argparse
     parser = argparse.ArgumentParser(description="Furniture Matcher")
     parser.add_argument("--input_path", required=True, help="Path to input image")
@@ -302,10 +302,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     cli_config = {
-        "csv_path": "D:/minor-project/data/ikea.csv",
+        "csv_path": "./ikea.csv",  # Use relative paths for server compatibility
         "input_path": args.input_path,
-        "cache_dir": "D:/minor-project/data/image_cache_ssim",
-        "report_path": "D:/minor-project/data/report",
+        "cache_dir": "./image_cache_ssim",
+        "report_path": "./report",
         "target_category": args.category if args.category else "",
         "max_workers": 16,
         "image_size": (300, 300),
@@ -314,3 +314,4 @@ if __name__ == "__main__":
     }
 
     main(cli_config)
+
