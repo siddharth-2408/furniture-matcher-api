@@ -32,4 +32,6 @@ def match_furniture():
         os.remove(input_path)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render provides $PORT
+    app.run(debug=False, host='0.0.0.0', port=port)
+
